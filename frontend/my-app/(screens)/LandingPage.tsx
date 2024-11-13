@@ -6,13 +6,16 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
   
 } from "react-native";
 import Carrosel from "./componentes/carrossel/Carrossel";
 import Sobre from "./componentes/sobre/Sobre";
+import { useNavigation } from "@react-navigation/native";
 
 function LandingPage() {
+
+  const navigation = useNavigation();
   // Obtém a largura inicial da tela
   const initialScreenWidth = Dimensions.get("window").width;
   const [screenWidth, setScreenWidth] = useState(initialScreenWidth);
@@ -48,10 +51,10 @@ function LandingPage() {
           <TouchableOpacity onPress={() => alert("Livros clicado")}>
             <Text style={styles.botaoTexto}>Livros</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.botaoTexto}>Sobre Nós</Text>
+          <TouchableOpacity onPress={() => alert("Sobre nos clicado")}>
+            <Text style={styles.botaoTexto}>Sobre Nos</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("/")}>
+          <TouchableOpacity onPress={() => {navigation.navigate("Login")}}>
             <Text style={styles.botaoTexto}>Sair</Text>
           </TouchableOpacity>
         </View>

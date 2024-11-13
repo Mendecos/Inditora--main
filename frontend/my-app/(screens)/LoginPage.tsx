@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TextInput, Button, Text, StyleSheet, Image, Dimensions, ScrollView } from "react-native";
+import { View, TextInput, Button, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from "react-native";
 
 export default function LoginPage({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState("");
@@ -78,6 +78,10 @@ export default function LoginPage({ navigation }: { navigation: any }) {
         )}
         <Button title="Acessar" onPress={handleLogin} color="orange" />
         <View style={styles.outraFormaLogin}>
+        <Text>Não tem conta?</Text>
+        <TouchableOpacity onPress={() => {navigation.navigate('Register')}}>
+            <Text style={styles.botaoTexto}>Cadastre-se</Text>
+          </TouchableOpacity>
           <Text>Ou entre com</Text>
           <View style={styles.Iconlogos}>
             <Image
@@ -135,7 +139,7 @@ const styles = StyleSheet.create({
   textBox2: {
     fontSize: 20,
     textAlign: "left", // Garante o alinhamento à esquerda
-    maxWidth: 400, // Define uma largura máxima para o texto quebrar
+    maxWidth: 500, // Define uma largura máxima para o texto quebrar
     lineHeight: 24, // Aumenta a altura da linha para facilitar a leitura
   },
   titleLogin: {
@@ -187,5 +191,11 @@ const styles = StyleSheet.create({
   curiosidadeResponsiva: {
     display: "none",
     
+  },
+  botaoTexto: {
+    padding: 15, // Espaçamento entre os textos (botões)
+    color: "white",
+    backgroundColor: 'orange',
+    borderRadius: 5
   },
 });

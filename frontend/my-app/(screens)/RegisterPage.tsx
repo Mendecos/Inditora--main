@@ -13,6 +13,7 @@ import {
 export default function LoginPage({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
   const [wrongInput, setWrongInput] = useState(false);
 
   // Obtém a largura inicial da tela
@@ -42,11 +43,15 @@ export default function LoginPage({ navigation }: { navigation: any }) {
   const handleLogin = () => {
     const validEmail = "rodgab.com";
     const validPassword = "123";
-
-    if (email === validEmail && password === validPassword) {
-      navigation.navigate("Landing", { email });
+  
+    if (password !== validPassword) {
+      alert("A senha incorreta."); // Set specific message for password mismatch
+    } else if (password !== passwordCheck) {
+      alert("As senhas não coincidem. Tente novamente."); // Set message for password mismatch
+    } else if (email === validEmail) {
+      navigation.navigate("Landing", { email }); // Navigate if email and both passwords match
     } else {
-      setWrongInput(true);
+      alert("E-mail incorreto."); // Set message for invalid email (optional)
     }
   };
 
@@ -98,6 +103,8 @@ export default function LoginPage({ navigation }: { navigation: any }) {
           <TextInput
             style={styles.input}
             placeholder="Confirme sua senha"
+            value={passwordCheck}
+            onChangeText={setPasswordCheck}
             secureTextEntry
             onSubmitEditing={handleLogin}
           />
